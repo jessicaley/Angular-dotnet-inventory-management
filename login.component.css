@@ -1,0 +1,25 @@
+.login-card {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  color: beige;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.error {
+  color: red;
+  margin: 1rem 0;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+button[type="submit"] {
+  width: 100%;
+}

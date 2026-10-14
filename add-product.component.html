@@ -1,0 +1,77 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" style="max-width: 600px; margin: auto; padding: 20px;">
+  <h1 style="text-align: center; margin-bottom: 30px;">Add Product</h1>
+
+  <!-- Name -->
+  <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 20px;">
+    <mat-label>Name *</mat-label>
+    <input matInput formControlName="name" required style="width: 100%;">
+    <mat-error *ngIf="productForm.get('name')?.errors?.['required']">
+      Product name is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Price -->
+  <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 20px;">
+    <mat-label>Price *</mat-label>
+    <input matInput formControlName="price" type="number" step="0.01" required style="width: 100%;">
+    <mat-error *ngIf="productForm.get('price')?.errors?.['required']">
+      Price is required
+    </mat-error>
+    <mat-error *ngIf="productForm.get('price')?.errors?.['min']">
+      Price must be greater than 0
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Brand Dropdown -->
+  <mat-form-field style="width: 100%; margin-bottom: 20px;">
+    <mat-label>Brand *</mat-label>
+    <mat-select formControlName="brandId" style="width: 100%;">
+      <mat-option *ngFor="let brand of brands" [value]="brand.brandId">
+        {{ brand.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Product Type Dropdown -->
+  <mat-form-field style="width: 100%; margin-bottom: 20px;">
+    <mat-label>Product Type *</mat-label>
+    <mat-select formControlName="productTypeId" style="width: 100%;">
+      <mat-option *ngFor="let type of productTypes" [value]="type.productTypeId">
+        {{ type.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Description -->
+  <mat-form-field appearance="outline" style="width: 100%; margin-bottom: 20px;">
+    <mat-label>Description *</mat-label>
+    <textarea matInput formControlName="description" required style="width: 100%; height: 100px;"></textarea>
+    <mat-error *ngIf="productForm.get('description')?.errors?.['required']">
+      Description is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- File Upload -->
+  <div style="text-align: center; margin-bottom: 25px;">
+    <input type="file" (change)="onFileSelected($event)" #fileUpload hidden accept="image/*">
+    <button mat-raised-button
+            type="button"
+            (click)="fileUpload.click()"
+            style="background-color: plum; color: white; width: 200px;">
+      <mat-icon>upload</mat-icon> Upload Image
+    </button>
+    <span style="display: block; margin-top: 8px;">{{ selectedFile?.name }}</span>
+  </div>
+
+  <!-- Submit -->
+  <div style="text-align: center;">
+    <button mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!productForm.valid || isSubmitting"
+            style="background-color: plum; color: white; width: 200px;">
+      <span *ngIf="!isSubmitting">Submit</span>
+      <mat-spinner *ngIf="isSubmitting" diameter="20"></mat-spinner>
+    </button>
+  </div>
+</form>

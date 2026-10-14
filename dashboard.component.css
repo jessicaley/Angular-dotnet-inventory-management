@@ -1,0 +1,27 @@
+/* Add these styles */
+.charts-container {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.chart-card {
+  flex: 1;
+  max-width: 400px; /* Adjust this value for desired size */
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+canvas {
+  max-width: 100% !important;
+  height: 300px !important; /* Fixed height for consistency */
+}
+
+.table-section {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 8px;
+}

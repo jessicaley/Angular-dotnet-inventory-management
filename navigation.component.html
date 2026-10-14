@@ -1,0 +1,36 @@
+<mat-toolbar style="background-color: rgb(185, 108, 204); color: white;">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Product Management</span>
+</mat-toolbar>
+
+<mat-sidenav-container style="background-color: white;">
+  <mat-sidenav #sidenav mode="side" style="background-color: white; color: black;">
+    <mat-nav-list>
+      <!-- Product Listing -->
+      <a mat-list-item routerLink="/products" style="color: black;">
+        <mat-icon style="color: black;">inventory_2</mat-icon> Product Listing
+      </a>
+
+      <!-- Add Product -->
+      <a mat-list-item routerLink="/add-product" style="color: black;">
+        <mat-icon style="color: black;">add_box</mat-icon> Add Product
+      </a>
+
+      <!-- Product Dashboard -->
+      <a mat-list-item routerLink="/dashboard" style="color: black;">
+        <mat-icon style="color: black;">dashboard</mat-icon> Product Dashboard
+      </a>
+
+      <!-- Logout -->
+      <a mat-list-item (click)="logout()" style="color: black;">
+        <mat-icon style="color: black;">logout</mat-icon> Logout
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content style="background-color: white; color: black;">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
